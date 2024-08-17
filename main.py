@@ -1,8 +1,8 @@
 # This is a sample Python script.
 from data.info import FinancialData
-from datetime import datetime
 from matplot.index import Matplot
-import numpy as np
+from helpers.format import format_date_from_timestamp
+from helpers.helper import reverse
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 FONTDICS = {'fontname': 'Comic Sans MS', 'fontsize': 16, 'color': '#d1d1d1'}
@@ -12,10 +12,6 @@ FONTDICS = {'fontname': 'Comic Sans MS', 'fontsize': 16, 'color': '#d1d1d1'}
 plots = ['Operating Gains Losses', 'Financing Cash Flow', 'Free Cash Flow', 'Sale Of Investment']
 
 # default_data = np.array([[1,2], [3,4], [5,6]])
-
-def reverse(lst):
-    new_lst = lst[::-1]
-    return new_lst
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -32,9 +28,7 @@ if __name__ == '__main__':
             # TODO: get values of label. 1M
             result = new_data.get_quarterly_cashflow__values_by_index_and_label(idx, plt)
             values.append(result / 1000 if result else 0)
-            # format datetime
-            date = datetime.fromtimestamp(int(key) / 1e3)
-            labels.append(date.strftime('%d-%m-%Y'))
+            labels.append(format_date_from_timestamp(timestamp=key, date_format='%d-%m-%Y'))
 
         result_arr = reverse(values)
         k_values.append(result_arr)
