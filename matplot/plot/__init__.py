@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 FONTDICS = {'fontname': 'Comic Sans MS', 'fontsize': 16, 'color': '#d1d1d1', 'fontweight': 'bold'}
 
 
-class Matplot:
+class Plot:
 
-    def __init__(self, x, y, plots, fontdict=None):
+    def __init__(self, x, y, plots, fontdict=None):  # TODO Fontdict is option pass
+        # TODO: pass default value for optional parameter
         if fontdict is None:
-            fontdict = FONTDICS
+            self.fontdict = FONTDICS
         else:
             self.fontdict = fontdict
         self.x = x
