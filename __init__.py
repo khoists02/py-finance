@@ -1,8 +1,9 @@
 # This is a sample Python script.
 from data.info import FinancialData
-from matplot.index import Matplot
-from helpers.format import format_date_from_timestamp
-from helpers.helper import reverse
+from matplot import Matplot
+from helpers import format_date_from_timestamp, reverse
+
+
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 plots = ['Financing Cash Flow', 'Free Cash Flow', 'Sale Of Investment']
@@ -11,14 +12,13 @@ plots = ['Financing Cash Flow', 'Free Cash Flow', 'Sale Of Investment']
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # TODO: new instance
-    ### TODO: load data
+    # TODO: load data
     new_data = FinancialData("LAZR")
     keys = new_data.get_quarterly_cashflow_keys()
     # defined init x, y values
     k_labels = []
     k_values = []
 
-    print(new_data.get_labels_of_cashflow_obj())
     for i, plt in enumerate(plots):
         # TODO: Convert keys to datetime format.
         values = []
@@ -34,5 +34,5 @@ if __name__ == '__main__':
 
         k_labels = labels
     # TODO: Matplot work.
-    # plot = Matplot(reverse(k_labels), k_values, plots)
-    # plot.draw()
+    plot = Matplot(reverse(k_labels), k_values, plots)
+    plot.draw()
