@@ -8,11 +8,14 @@ class Matplot:
         self.plots = plots
 
     def draw(self):
-        lines = []
+        types = ['b.-', 'r.-', 'g.-']
         for idx, dt in enumerate(self.plots):
-            lines.append(plt.plot(self.x, self.y[idx]))
+            plt.plot(self.x, self.y[idx], types[idx], label=dt)
+
         # TODO: how to shoe legends.
-        # plt.legend(lines, self.plots)
+        plt.xlabel('Time')
+        plt.ylabel('Dolar')
+        plt.legend()
         plt.show()
 
 
