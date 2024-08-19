@@ -14,6 +14,7 @@ class Histogram:
             self.legend = legend
 
     def draw(self):
+        plt.figure(figsize=(10, 5))
         plt.hist(self.x, bins=self.bins)
         plt.xlabel(self.xlabel)
         plt.ylabel(self.ylabel)

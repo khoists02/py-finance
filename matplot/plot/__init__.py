@@ -26,5 +26,8 @@ class Plot:
         plt.ylabel('Dolar')
         # TODO show label with label in plot
         plt.legend()
+
+        # plotting a line plot after changing it is width and height
+        plt.rcParams['figure.figsize'] = [2, 2]
         # TODO show chart
         plt.show()

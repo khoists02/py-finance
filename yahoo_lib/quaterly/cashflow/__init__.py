@@ -1,19 +1,27 @@
+from yahoo_lib import FinancialModule
 import yfinance as yf
 import json
 
+"""
+GET DATA OF STOCK BY QUATERLY
+"""
 
-class FinancialData:
-    def __init__(self, ticker):
-        self.ticker = ticker
 
-    def get_ticker_info(self) -> dict:
-        return yf.Ticker(self.ticker).info
+class QuaterlyCashflow(FinancialModule):
+    def __init__(self, ticker: str):
+        super().__init__(ticker)
+        self.name = 'Quaterly'
+        self.description = 'Quaterly'
 
     def get_quarterly_cashflow(self):
         data = yf.Ticker(self.ticker).quarterly_cashflow
         return json.loads(data.to_json())
 
-    # TODO: Date keys
+    # TODO: Data keys
+    """
+    list of date
+    """
+
     def get_quarterly_cashflow_keys(self) -> list[str]:
         return list(self.get_quarterly_cashflow().keys())
 
@@ -79,5 +87,6 @@ class FinancialData:
         one_vl = allvalues[0]
         return list(one_vl.keys())
 
+    # TODO: values of label key
     def get_quarterly_cashflow__values_by_index_and_label(self, index, label):
         return list(self.get_quarterly_cashflow().values())[index][label]
