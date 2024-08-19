@@ -15,17 +15,17 @@ plots = ['Financing Cash Flow', 'Free Cash Flow', 'Sale Of Investment']
 
 def draw_histogram():
     bins = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]
-    lazr = pd.read_csv('data/LAZR.csv')
+    lazr = pd.read_csv('data/LAZR-max.csv')
     title = 'Distribution of Adj Close LAZR'
-
     # TODO Histogram
     chart = Histogram(lazr['Adj Close'], bins=bins, xlabel='Adj Close', ylabel='Number of days', title=title)
     chart.draw()
 
     # Pie chart
     # TODO: count close more than 3 or less than or equal testing.
-    more_than_three = lazr.loc[lazr['Adj Close'] > 3].count()[0]
-    less_than_or_equal_three = lazr.loc[lazr['Adj Close'] < 3].count()[0]
+
+    # more_than_three = lazr.loc[lazr['Adj Close'] > 3].count()[0]
+    # less_than_or_equal_three = lazr.loc[lazr['Adj Close'] < 3].count()[0]
     # print(more_than_three, less_than_or_equal_three)
     # pie = Pie([more_than_three, less_than_or_equal_three], labels=['More Than Three', 'Less Than Or Equal'], colors=['red', 'yellow'])
     # pie.draw()
