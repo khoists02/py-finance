@@ -18,15 +18,19 @@ def draw_histogram():
     lazr = pd.read_csv('data/LAZR-max.csv')
     title = 'Distribution of Adj Close LAZR'
     # TODO Histogram
-    chart = Histogram(lazr['Adj Close'], bins=bins, xlabel='Adj Close', ylabel='Number of days', title=title)
-    chart.draw()
+    # chart = Histogram(lazr['Adj Close'], bins=bins, xlabel='Adj Close', ylabel='Number of days', title=title)
+    # chart.draw()
 
     # Pie chart
-    # TODO: count close more than 3 or less than or equal testing.
+    # TODO: count close more than 3 or less than or equal testing. and how to use loc function in dataframe
+    # prefer doc: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
+    # Access a group of rows and columns by label(s) or a boolean array.
 
-    # more_than_three = lazr.loc[lazr['Adj Close'] > 3].count()[0]
-    # less_than_or_equal_three = lazr.loc[lazr['Adj Close'] < 3].count()[0]
-    # print(more_than_three, less_than_or_equal_three)
+    more_than_three = lazr.loc[lazr['Adj Close'] > 3].count()[0]  # couting close value more than 3.0
+    mt_five_and_lesst_seven = lazr.loc[(lazr['Adj Close'] > 5) & (lazr['Adj Close'] < 7)].count()[0]  # Multiple condition in loc function.
+    less_than_or_equal_three = lazr.loc[lazr['Adj Close'] < 3].count()[0]
+    print(more_than_three, less_than_or_equal_three)
+    print(mt_five_and_lesst_seven)
     # pie = Pie([more_than_three, less_than_or_equal_three], labels=['More Than Three', 'Less Than Or Equal'], colors=['red', 'yellow'])
     # pie.draw()
 
