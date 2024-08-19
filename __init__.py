@@ -15,7 +15,7 @@ plots = ['Financing Cash Flow', 'Free Cash Flow', 'Sale Of Investment']
 
 def draw_histogram():
     bins = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]
-    lazr = pd.read_csv('./luminar/LAZR.csv')
+    lazr = pd.read_csv('data/LAZR.csv')
     title = 'Distribution of Adj Close LAZR'
     # TODO print data
     chart = Histogram(lazr['Adj Close'], bins=bins, xlabel='Adj Close', ylabel='Number of days', title=title)
@@ -30,8 +30,8 @@ if __name__ == '__main__':
     # TODO: new instance
     # TODO: load data
     quaterly_cashflow = QuaterlyCashflow("LAZR")
-    print(quaterly_cashflow.get_ticker_info())
-    keys = quaterly_cashflow.get_quarterly_cashflow_keys()
+
+    date_keys = quaterly_cashflow.get_quarterly_cashflow_keys()
     # defined init x, y values
     k_labels = []
     k_values = []
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         # TODO: Convert keys to datetime format.
         values = []
         labels = []
-        for idx, key in enumerate(keys):
+        for idx, key in enumerate(date_keys):
             # TODO: get values of label. 1M
             result = quaterly_cashflow.get_quarterly_cashflow__values_by_index_and_label(idx, plt)
             values.append(result / 1000 if result else 0)
