@@ -116,8 +116,7 @@ if __name__ == '__main4__':
 
 if __name__ == '__main__':
     # TODO: Pandas module with yFinance module
-    pdm = PandasModule()
-    df = pdm.load_data_frame_from_yahoofincance('LAZR')
+    df = PandasModule.load_data_frame_from_yahoofincance('LAZR')
 
     # TODO: find min,max rows
     max_close = df['Close'].max()
