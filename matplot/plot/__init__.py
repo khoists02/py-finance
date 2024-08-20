@@ -4,7 +4,7 @@ import constants
 
 class Plot:
 
-    def __init__(self, x, y, plots, title=None, fontdict=None):  # TODO Fontdict is option pass
+    def __init__(self, x, y, plots, title=None, fontdict=None):  # TODO Fontdict and title is optional paramaters.
         # TODO: pass default value for optional parameter
         if fontdict is None:
             self.fontdict = constants.FONTDICS
@@ -13,10 +13,12 @@ class Plot:
         self.x = x
         self.y = y
         self.plots = plots
+        self.title = title
 
     def draw(self):
         types = ['b.-', 'r.-', 'g.-']  # type plot chart
-        plt.title('TESTING', fontdict=self.fontdict)  # title and font config
+        if self.title is not none:
+            plt.title(self.title, fontdict=self.fontdict)  # title and font config
         for idx, dt in enumerate(self.plots):
             # TODO: multple plot
             plt.plot(self.x, self.y[idx], types[idx], label=dt)  # plot data
