@@ -1,19 +1,15 @@
+from io import StringIO
+from yahoo_lib import FinancialModule
 import pandas as pd
 
-df = pd.read_csv("../data/fifa_data.csv")
-print(df.columns)
+class PandasModule:
+    def __init__(self):
+        pass
 
-# print(df['GKDiving'].max())
-# print(df['Age'].max())
-
-max_age = df['Age'].max()
-min_age = df['Age'].min()
-
-older = df.loc[df['Age'] == max_age]
-younger = df.loc[df['Age'] == min_age]
-
-"""
-    How to use loc, iloc in pandas.
-"""
+    @staticmethod
+    def load_data_frame_from_yahoofincance(ticker):
+        ticker = FinancialModule(ticker)
+        csv_str = ticker.export_histories_to_csv()
+        return pd.read_csv(StringIO(csv_str), dtype=str)
 
 

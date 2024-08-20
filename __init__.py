@@ -1,12 +1,12 @@
 # This is a sample Python script.
-from io import StringIO
-
+# from io import StringIO
+from pandas_module import PandasModule
 from yahoo_lib.quaterly.cashflow import QuaterlyCashflow
 from yahoo_lib.quaterly.balance_sheet import QuaterlyBalanceSheet
-from yahoo_lib import FinancialModule
+# from yahoo_lib import FinancialModule
 from matplot.plot import Plot
-from matplot.histogram import Histogram
-from matplot.pie import Pie
+# from matplot.histogram import Histogram
+# from matplot.pie import Pie
 from helpers import format_date_from_timestamp, reverse
 import pandas as pd
 
@@ -115,10 +115,9 @@ if __name__ == '__main4__':
     plot.draw()
 
 if __name__ == '__main__':
-    # TODO: instance
-    ticker = FinancialModule(ticker='LAZR')
-    # TODO: convert csv string to dataframe.
-    df = pd.read_csv(StringIO(ticker.export_histories_to_csv()), dtype=str)
+    # TODO: Pandas module with yFinance module
+    pdm = PandasModule()
+    df = pdm.load_data_frame_from_yahoofincance('LAZR')
 
     # TODO: find min,max rows
     max_close = df['Close'].max()
