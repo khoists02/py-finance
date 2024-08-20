@@ -4,12 +4,12 @@ import constants
 
 class Pie:
 
-    def __init__(self, values, colors, labels,  title=None, fontdict=None):  # TODO Fontdict is option pass
+    def __init__(self, values, colors, labels,  title=None, font_dict=None):  # TODO Font dict is option pass
         # TODO: pass default value for optional parameter
-        if fontdict is None:
-            self.fontdict = constants.FONTDICS
+        if font_dict is None:
+            self.font_dict = constants.FONTDICS
         else:
-            self.fontdict = fontdict
+            self.font_dict = font_dict
         self.values = values
         self.colors = colors
         self.labels = labels
