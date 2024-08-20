@@ -32,12 +32,14 @@ def draw_histogram():
     # Access a group of rows and columns by label(s) or a boolean array.
 
     more_than_three = lazr.loc[lazr['Adj Close'] > 3].count()[0]  # couting close value more than 3.0
-    mt_five_and_lesst_seven = lazr.loc[(lazr['Adj Close'] > 5) & (lazr['Adj Close'] < 7)].count()[0]  # Multiple condition in loc function.
+    mt_five_and_lesst_seven = lazr.loc[(lazr['Adj Close'] > 5) & (lazr['Adj Close'] < 7)].count()[
+        0]  # Multiple condition in loc function.
     less_than_or_equal_three = lazr.loc[lazr['Adj Close'] < 3].count()[0]
     print(more_than_three, less_than_or_equal_three)
     print(mt_five_and_lesst_seven)
     # pie = Pie([more_than_three, less_than_or_equal_three], labels=['More Than Three', 'Less Than Or Equal'], colors=['red', 'yellow'])
     # pie.draw()
+
 
 """
     Histogram chart
