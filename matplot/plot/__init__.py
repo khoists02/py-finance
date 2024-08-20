@@ -17,7 +17,11 @@ class Plot:
 
     def draw(self):
         types = ['b.-', 'r.-', 'g.-']  # type plot chart
+<<<<<<< HEAD
         if self.title is not none:
+=======
+        if self.title is not None:
+>>>>>>> a741e74f68303fdecb2e223fa0771f47745eb440
             plt.title(self.title, fontdict=self.fontdict)  # title and font config
         for idx, dt in enumerate(self.plots):
             # TODO: multple plot
