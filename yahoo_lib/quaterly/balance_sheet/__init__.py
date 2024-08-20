@@ -3,18 +3,18 @@ import yfinance as yf
 import json
 
 """
-GET CASHFLOW DATA OF STOCK BY QUATERLY
+GET Balance sheet DATA OF STOCK BY QUATERLY
 """
 
 
-class QuaterlyCashflow(FinancialModule):
+class QuaterlyBalanceSheet(FinancialModule):
     def __init__(self, ticker: str):
         super().__init__(ticker)
-        self.name = 'Quaterly Cashflow'
-        self.description = 'Quaterly Cashflow'
+        self.name = 'Quaterly Balance Sheet'
+        self.description = 'Quaterly Balance Sheet'
 
-    def get_quarterly_cashflow(self):
-        data = yf.Ticker(self.ticker).quarterly_cashflow
+    def get_quarterly_balance_sheet(self):
+        data = yf.Ticker(self.ticker).balance_sheet
         return json.loads(data.to_json())
 
     # TODO: Data keys
@@ -22,10 +22,10 @@ class QuaterlyCashflow(FinancialModule):
     list of date
     """
 
-    def get_quarterly_cashflow_keys(self) -> list[str]:
-        return list(self.get_quarterly_cashflow().keys())
+    def get_quarterly_balance_keys(self) -> list[str]:
+        return list(self.get_quarterly_balance_sheet().keys())
 
-    # TODO: labels cashflow
+    # TODO: labels balance sheet
     """
         Free Cash Flow
         Repurchase Of Capital Stock
@@ -82,11 +82,11 @@ class QuaterlyCashflow(FinancialModule):
         Net Income From Continuing Operations
     """
 
-    def get_labels_of_cashflow_obj(self) -> list[str]:
-        values = list(self.get_quarterly_cashflow().values())
+    def get_labels_of_balance_obj(self) -> list[str]:
+        values = list(self.get_quarterly_balance_sheet().values())
         first = values[0]
         return list(first.keys())
 
     # TODO: values of label key
-    def get_quarterly_cashflow__values_by_index_and_label(self, index, label):
-        return list(self.get_quarterly_cashflow().values())[index][label]
+    def get_quarterly_balance_values_by_index_and_label(self, index, label):
+        return list(self.get_quarterly_balance_sheet().values())[index][label]

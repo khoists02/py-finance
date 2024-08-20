@@ -13,10 +13,12 @@ class Plot:
         self.x = x
         self.y = y
         self.plots = plots
+        self.title = title
 
     def draw(self):
         types = ['b.-', 'r.-', 'g.-']  # type plot chart
-        plt.title('TESTING', fontdict=self.fontdict)  # title and font config
+        if self.title is not None:
+            plt.title(self.title, fontdict=self.fontdict)  # title and font config
         for idx, dt in enumerate(self.plots):
             # TODO: multple plot
             plt.plot(self.x, self.y[idx], types[idx], label=dt)  # plot data

@@ -1,5 +1,6 @@
 # This is a sample Python script.
 from yahoo_lib.quaterly.cashflow import QuaterlyCashflow
+from yahoo_lib.quaterly.balance_sheet import QuaterlyBalanceSheet
 from matplot.plot import Plot
 from matplot.histogram import Histogram
 from matplot.pie import Pie
@@ -34,11 +35,17 @@ def draw_histogram():
     # pie = Pie([more_than_three, less_than_or_equal_three], labels=['More Than Three', 'Less Than Or Equal'], colors=['red', 'yellow'])
     # pie.draw()
 
-
-if __name__ == '__main__':
+"""
+    Histogram chart
+"""
+if __name__ == '__main2__':
     draw_histogram()
 
 # Press the green button in the gutter to run the script.
+
+"""
+    Cashflow  with plot chart
+"""
 if __name__ == '__main1__':
     # TODO: new instance
     # TODO: load data
@@ -65,4 +72,38 @@ if __name__ == '__main1__':
         k_labels = labels
     # TODO: Matplot working here.
     plot = Plot(reverse(k_labels), k_values, plots)
+    plot.draw()
+
+"""
+    Balance sheet with plot chart
+"""
+if __name__ == '__main__':
+    # TODO: new instance
+    quaterly_balanace_sheet = QuaterlyBalanceSheet("LAZR")
+    date_keys = quaterly_balanace_sheet.get_quarterly_balance_keys()
+
+    # defined init x, y values
+    b_labels = []
+    b_values = []
+
+    # print(quaterly_balanace_sheet.get_labels_of_balance_obj())
+    b_plots = quaterly_balanace_sheet.get_labels_of_balance_obj()[1:3]
+    # print(b_plots)
+    for i, plt in enumerate(b_plots):
+        # TODO: Convert keys to datetime format.
+        values = []
+        labels = []
+        for idx, key in enumerate(date_keys):
+            # TODO: get values of label. 1M
+            result = quaterly_balanace_sheet.get_quarterly_balance_values_by_index_and_label(idx, plt)
+            values.append(result / 1000 if result else 0)
+            labels.append(format_date_from_timestamp(timestamp=key, date_format='%m-%Y'))
+
+        result_arr = reverse(values)
+        b_values.append(result_arr)
+
+        b_labels = labels
+
+    # TODO: Matplot working here.
+    plot = Plot(reverse(b_labels), y=b_values, plots=b_plots)
     plot.draw()
