@@ -1,6 +1,9 @@
 # This is a sample Python script.
+from io import StringIO
+
 from yahoo_lib.quaterly.cashflow import QuaterlyCashflow
 from yahoo_lib.quaterly.balance_sheet import QuaterlyBalanceSheet
+from yahoo_lib import FinancialModule
 from matplot.plot import Plot
 from matplot.histogram import Histogram
 from matplot.pie import Pie
@@ -17,6 +20,7 @@ plots = ['Financing Cash Flow', 'Free Cash Flow', 'Sale Of Investment']
 def draw_histogram():
     bins = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]
     lazr = pd.read_csv('data/LAZR-max.csv')
+    print(lazr.head(5))
     title = 'Distribution of Adj Close LAZR'
     # TODO Histogram
     # chart = Histogram(lazr['Adj Close'], bins=bins, xlabel='Adj Close', ylabel='Number of days', title=title)
@@ -38,7 +42,7 @@ def draw_histogram():
 """
     Histogram chart
 """
-if __name__ == '__main2__':
+if __name__ == '__main4__':
     draw_histogram()
 
 # Press the green button in the gutter to run the script.
@@ -77,7 +81,7 @@ if __name__ == '__main1__':
 """
     Balance sheet with plot chart
 """
-if __name__ == '__main__':
+if __name__ == '__main4__':
     # TODO: new instance
     quaterly_balanace_sheet = QuaterlyBalanceSheet("LAZR")
     date_keys = quaterly_balanace_sheet.get_quarterly_balance_keys()
@@ -107,3 +111,19 @@ if __name__ == '__main__':
     # TODO: Matplot working here.
     plot = Plot(reverse(b_labels), y=b_values, plots=b_plots)
     plot.draw()
+
+if __name__ == '__main__':
+    # TODO: instance
+    ticker = FinancialModule(ticker='LAZR')
+    # TODO: convert csv string to dataframe.
+    df = pd.read_csv(StringIO(ticker.export_histories_to_csv()), dtype=str)
+
+    # TODO: find min,max rows
+    max_close = df['Close'].max()
+    min_close = df['Close'].min()
+
+    max_rows = df.loc[df['Close'] == max_close]
+    min_rows = df.loc[df['Close'] == min_close]
+
+    # print(max_rows['Date'], max_rows['Close'])
+    print(min_rows)
