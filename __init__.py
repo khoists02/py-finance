@@ -20,7 +20,7 @@ plots = ['Financing Cash Flow', 'Free Cash Flow', 'Sale Of Investment']
 def draw_histogram():
     bins = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]
     lazr = pd.read_csv('data/LAZR-max.csv')
-    print(lazr.head(5))
+    # print(lazr.head(5))
     title = 'Distribution of Adj Close LAZR'
     # TODO Histogram
     # chart = Histogram(lazr['Adj Close'], bins=bins, xlabel='Adj Close', ylabel='Number of days', title=title)
@@ -31,11 +31,11 @@ def draw_histogram():
     # prefer doc: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html
     # Access a group of rows and columns by label(s) or a boolean array.
 
-    more_than_three = lazr.loc[lazr['Adj Close'] > 3].count()[0]  # couting close value more than 3.0
+    more_than_three = lazr.loc[lazr['Adj Close'] > 3].count()['Adj Close']  # couting close value more than 3.0
     mt_five_and_lesst_seven = lazr.loc[(lazr['Adj Close'] > 5) & (lazr['Adj Close'] < 7)].count()[
-        0]  # Multiple condition in loc function.
-    less_than_or_equal_three = lazr.loc[lazr['Adj Close'] < 3].count()[0]
-    print(more_than_three, less_than_or_equal_three)
+        'Adj Close']  # Multiple condition in loc function.
+    less_than_or_equal_three = lazr.loc[lazr['Adj Close'] < 3].count()['Adj Close']
+    # print(more_than_three, less_than_or_equal_three)
     print(mt_five_and_lesst_seven)
     # pie = Pie([more_than_three, less_than_or_equal_three], labels=['More Than Three', 'Less Than Or Equal'], colors=['red', 'yellow'])
     # pie.draw()
@@ -44,7 +44,7 @@ def draw_histogram():
 """
     Histogram chart
 """
-if __name__ == '__main4__':
+if __name__ == '__main33__':
     draw_histogram()
 
 # Press the green button in the gutter to run the script.
@@ -52,10 +52,12 @@ if __name__ == '__main4__':
 """
     Cashflow  with plot chart
 """
-if __name__ == '__main1__':
+if __name__ == '__main__':
     # TODO: new instance
     # TODO: load data
     quaterly_cashflow = QuaterlyCashflow("LAZR")
+
+    # print(repr(quaterly_cashflow))
 
     date_keys = quaterly_cashflow.get_quarterly_cashflow_keys()
     # defined init x, y values
@@ -114,7 +116,7 @@ if __name__ == '__main4__':
     plot = Plot(reverse(b_labels), y=b_values, plots=b_plots)
     plot.draw()
 
-if __name__ == '__main__':
+if __name__ == '__main7__':
     # TODO: Pandas module with yFinance module
     df = PandasModule.load_data_frame_from_yahoofincance('LAZR')
 

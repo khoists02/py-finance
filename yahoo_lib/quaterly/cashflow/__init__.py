@@ -90,3 +90,6 @@ class QuaterlyCashflow(FinancialModule):
     # TODO: values of label key
     def get_quarterly_cashflow__values_by_index_and_label(self, index, label):
         return list(self.get_quarterly_cashflow().values())[index][label]
+
+    def __repr__(self):
+        return "Ticker {}".format(self.ticker)
